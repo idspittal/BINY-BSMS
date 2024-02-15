@@ -25,7 +25,7 @@ void loop() {
 
   duration = pulseIn(echoPin, HIGH);
   distance = (duration*0.029)/2; // This calculation is inaccurate!
-  if(distance < 18)
+  if(distance < 500 && distance > 10)
     digitalWrite(LED_BUILTIN, HIGH);
   else
     digitalWrite(LED_BUILTIN, LOW);
