@@ -2,18 +2,22 @@
  * HC-SR04 example sketch
  */
 
-const int trigPin = 9;
-const int echoPin = 10;
+//Quick Config
+const int minDistanceUltra = 10;
+const int maxDistanceUltra = 50;
+
+const int trigPin = 11;
+const int echoPin = 12;
+const int ultraLed = 7;
 
 float duration, distance;
 
 void setup() {
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
+  pinMode(ultraLed, OUTPUT);
+  
   Serial.begin(9600);
-
-  // initialize digital pin LED_BUILTIN as an output.
-  pinMode(LED_BUILTIN, OUTPUT);
 }
 
 void loop() {
@@ -22,14 +26,13 @@ void loop() {
   digitalWrite(trigPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
-
   duration = pulseIn(echoPin, HIGH);
   distance = (duration*0.029)/2; // This calculation is inaccurate!
-  if(distance < 500 && distance > 10)
-    digitalWrite(LED_BUILTIN, HIGH);
+  if(distance < maxDistanceUltra && distance > minDistanceUltra)
+    digitalWrite(ultraLed, HIGH);
   else
-    digitalWrite(LED_BUILTIN, LOW);
-  Serial.print("Distance: ");
+    digitalWrite(ultraLed, LOW);
+  Serial.print("Ultrasonic Detection: ");
   Serial.println(distance);
   delay(100);
 }
