@@ -3,8 +3,8 @@
  */
 
 //Quick Config
-const int minDistanceUltra = 10;
-const int maxDistanceUltra = 50;
+const int minDistanceUltra = 2;
+const int maxDistanceUltra = 15;
 
 //define Ultrasonic vars
 const int trigPin = 11;
